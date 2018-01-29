@@ -1,10 +1,14 @@
-# steamcmd
-Use it as standalone or build a new docker image on top of it.
+Docker container running SteamCMD. Can be used to install Steam based dedicated servers and run them in a Docker container.
 
-Usage in Docker:
+### Build on top
+Usage when building a new image (replace <APP_ID> with the Steam APP ID):
+```dockerfile
 FROM biseque/steamcmd
-
 RUN /steamcmd/steamcmd.sh +login anonymous +force_install_dir /data +app_update <APP_ID> +quit
+```
 
-Usage standalone:
-docker run -v $pwd:/data biseque/steamcmd +login anonymous +force_install_dir /data +app_update <APP_ID> +quit
+### Standalone
+Usage as standalone container:
+```console
+$ docker run -v $pwd:/data biseque/steamcmd +login anonymous +force_install_dir /data +app_update <APP_ID> +quit
+```
