@@ -1,5 +1,5 @@
 FROM debian:latest
-MAINTAINER Ryan Schlesinger <ryan@ryanschlesinger.com>
+LABEL maintainer="Ryan Schlesinger <ryan@ryanschlesinger.com>"
 
 ENV STEAMCMD_PATH="/steamcmd"
 ENV STEAMCMD="$STEAMCMD_PATH/steamcmd.sh"
