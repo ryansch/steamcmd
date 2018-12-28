@@ -1,15 +1,18 @@
 FROM debian:latest
-MAINTAINER biseque <info@biseque.com>
+MAINTAINER Ryan Schlesinger <ryan@ryanschlesinger.com>
 
 ENV STEAMCMD_PATH="/steamcmd"
 ENV STEAMCMD="$STEAMCMD_PATH/steamcmd.sh"
 
-RUN apt-get update
-RUN apt-get install wget lib32gcc1 -y
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    wget \
+    ca-certificates \
+    lib32gcc1 \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR $STEAMCMD_PATH
 
-RUN wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
-RUN tar xf steamcmd_linux.tar.gz
+RUN wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz \
+  && tar xf steamcmd_linux.tar.gz
 
 CMD $STEAMCMD
